@@ -1,7 +1,10 @@
 parameters:
-#    frequence_web_hermes.example.class: FrequenceWeb\Bundle\HermesBundle\Example
+    validator.list.valid.class: Hermes\Bundle\HermesBundle\Validator\Constraints\ListValidValidator
 
 services:
-#    frequence_web_hermes.example:
-#        class: %frequence_web_hermes.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    hermes.validator.list.valid:
+        class: %validator.list.valid.class%
+        parameters:
+          - @doctrine.orm.entity_manager
+        tags:
+            - { name: validator.constraint_validator, alias: list_valid }

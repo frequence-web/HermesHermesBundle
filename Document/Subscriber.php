@@ -2,8 +2,10 @@
 
 namespace Hermes\Bundle\HermesBundle\Document;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB,
-    Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\Request;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Hermes\Bundle\HermesBundle\Entity\Subscriber
@@ -23,6 +25,8 @@ class Subscriber
      * @var string $email
      *
      * @MongoDB\String
+     * @Assert\Email
+     * @Assert\NotBlank
      */
     protected $email;
 
@@ -30,6 +34,7 @@ class Subscriber
      * @var string $locale
      *
      * @MongoDB\String
+     * @Assert\NotBlank
      */
     protected $locale;
 
@@ -164,5 +169,24 @@ class Subscriber
     public function getParams()
     {
         return $this->params;
+    }
+
+    /**
+     * Creates a Subscriber from a Request.
+     *
+     * @static
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return Subscriber
+     */
+    public static function createFromRequest(Request $request)
+    {
+        $subscriber = new Subscriber();
+
+        return $subscriber
+            ->setEmail($request->request->get('email'))
+            ->addParams($request->request->get('params'))
+            ->setLocale($request->request->get('locale'))
+            ->setList($request->request->get('list'))
+        ;
     }
 }
