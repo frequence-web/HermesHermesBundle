@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Test API Hermes</title>
+    </head>
+    <body>
+        <p>This page is a simple html page for testing the API of the project</p>
+        <fieldset>
+            <legend>Subscribe to my newsletter !</legend>
+            <form action="http://hermes/app_dev.php/api/subscriber/add.json" method="post">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><label for="list">List</label></td>
+                            <td><input type="text" name="list" id="list" required="required" /></td>
+                            <td>(should be hidden in a real form)</td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">Email address</label></td>
+                            <td><input type="text" id="email" name="email" required="required" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><input type="hidden" name="locale" value="fr_FR" /></td>
+                            <td><button type="submit">Subsribe</button></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </fieldset>
+    </body>
+</html>

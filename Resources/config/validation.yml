@@ -1,0 +1,10 @@
+Hermes\Bundle\HermesBundle\Entity\SubscriberList:
+    properties:
+        name:
+            - NotBlank: ~
+
+Hermes\Bundle\HermesBundle\Document\Subscriber:
+    properties:
+        email:
+            - NotBlank: ~
+            - Email: ~
